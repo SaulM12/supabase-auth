@@ -1,0 +1,22 @@
+.form-widget {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+}
+
+.primary {
+  background-color: #007bff;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}

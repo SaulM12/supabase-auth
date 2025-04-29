@@ -1,0 +1,56 @@
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.form-widget {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.header {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.description {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}

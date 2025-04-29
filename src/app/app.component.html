@@ -1,0 +1,5 @@
+@if (session) {
+<app-account [session]="session"></app-account>
+}@else {
+    <app-auth></app-auth>
+}
