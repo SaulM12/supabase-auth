@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-auth',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, InputTextModule, ButtonModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })
@@ -16,10 +19,11 @@ export class AuthComponent {
 
   constructor(
     private readonly supabase: AuthService,
-    private readonly formBuilder:FormBuilder
-  ){
+    private readonly formBuilder: FormBuilder,
+    private readonly toastService: ToastService
+  ) {
     this.signInForm = this.formBuilder.group({
-      email:''
+      email: ''
     })
   }
 
@@ -29,10 +33,10 @@ export class AuthComponent {
       const email = this.signInForm.value.email as string
       const { error } = await this.supabase.signIn(email)
       if (error) throw error
-      alert('Check your email for the login link!')
+      this.toastService.showSuccess('Enviado Correctamente', 'Revisa tu correo electronico')
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message)
+        this.toastService.showError('No se pudo enviar', error.message)
       }
     } finally {
       this.signInForm.reset()

@@ -3,10 +3,13 @@ import { Profile } from '../models/profile';
 import { AuthSession } from '@supabase/supabase-js';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-account',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, InputTextModule, ButtonModule],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
@@ -19,7 +22,8 @@ export class AccountComponent {
 
   constructor(
     private readonly supabase: AuthService,
-    private formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly toastService:ToastService
   ) {
     this.updateProfileForm = this.formBuilder.group({
       username: [''],
@@ -72,10 +76,10 @@ export class AccountComponent {
         avatar_url,
       })
       if (error) throw error
-      alert('Profile updated.')
+      this.toastService.showSuccess('Actualizado','El perfil se actualizó correctamente')
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message)
+        this.toastService.showError('Error','No se pudo actualizar el perfil')
       }
     } finally {
       this.loading = false

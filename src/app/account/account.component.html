@@ -1,22 +1,52 @@
-<form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()" class="form-widget">
+<div class="flex justify-center items-center h-screen">
+  <div
+    class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md"
+    aria-live="polite"
+  >
+    <form
+      [formGroup]="updateProfileForm"
+      (ngSubmit)="updateProfile()"
+      class="space-y-4"
+    >
     <div>
       <label for="email">Email</label>
-      <input id="email" type="text" [value]="session.user.email" disabled />
+      <input class="w-full p-2 border border-gray-300 rounded-md shadow-sm" pInputText id="email" type="text" [value]="session.user.email" disabled />
     </div>
-    <div>
-      <label for="username">Name</label>
-      <input formControlName="username" id="username" type="text" />
-    </div>
-    <div>
-      <label for="website">Website</label>
-      <input formControlName="website" id="website" type="url" />
-    </div>
-    <div>
-      <button type="submit" class="button primary block" [disabled]="loading">
-        {{ loading ? 'Loading ...' : 'Update' }}
-      </button>
-    </div>
-    <div>
-      <button class="button block" (click)="signOut()">Sign Out</button>
-    </div>
-  </form>
+      <div>
+        <label for="username" class="block mb-2 text-sm font-medium text-gray-200"
+          >Name</label
+        >
+        <input
+        pInputText 
+          formControlName="username"
+          id="username"
+          type="text"
+          class="w-full p-2 border border-gray-300 rounded-md shadow-sm"
+        />
+      </div>
+      <div>
+        <label for="website" class="block mb-2 text-sm font-medium text-gray-200"
+          >Website</label
+        >
+        <input
+        pInputText
+          formControlName="website"
+          id="website"
+          type="url"
+          class="w-full p-2 border border-gray-300 rounded-md shadow-sm"
+        />
+      </div>
+      <div>
+        <p-button
+          type="submit"
+          label="{{ loading ? 'Loading ...' : 'Update' }}"
+          [loading]="loading"
+          class="w-full p-button-primary"
+        ></p-button>
+      </div>
+      <div>
+        <p-button label="Sign Out" (onClick)="signOut()" class="w-full"></p-button>
+      </div>
+    </form>
+  </div>
+</div>
